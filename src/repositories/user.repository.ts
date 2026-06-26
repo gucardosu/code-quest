@@ -13,4 +13,13 @@ export class UserRepository {
 
     return rows[0] ?? null;
   }
+
+  async findByID(id: number): Promise<User | null> {
+    const [rows] = await pool.query<(User & RowDataPacket)[]>(
+      "SELECT * FROM users WHERE id = ?",
+      [id],
+    );
+
+    return rows[0] ?? null;
+  }
 }
