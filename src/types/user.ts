@@ -4,11 +4,16 @@ export interface User {
   email: string;
   password_hash: string;
   created_at: Date;
-  update_at: Date;
+  updated_at: Date;
 }
 
-export interface CreateUserDTD {
+export interface CreateUserDTO {
   name: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginDTO {
   email: string;
   password: string;
 }
