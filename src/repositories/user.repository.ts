@@ -22,4 +22,16 @@ export class UserRepository {
 
     return rows[0] ?? null;
   }
+  async create(user: CreateUser): Promise<number> {
+    const [result] = await pool.execute<ResultSetHeader>(
+      `
+        INSERT INTO users
+        (name, email, password_hash)
+        VALUES (?, ?, ?)
+        `,
+      [user.name, user.email, user.password_hash],
+    );
+
+    return result.insertId;
+  }
 }
